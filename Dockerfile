@@ -14,7 +14,8 @@ RUN apk update \
    && wget --no-check-certificate ${CONF_URL} -O /data/rtkrcv.conf \
    && git clone --depth 1 --branch ${RTK_VER} ${RTKLIB_URL} \
    && (cd RTKLIB/lib/iers/gcc/; make) \
-   && (cd RTKLIB/app/; make all; make install)
+   && (cd RTKLIB/app/rtkrcv/gcc; make; make install) \
+   && (cd RTKLIB/app/str2str/gcc; make; make install)
 RUN apk del build-base git autoconf automake wget tar unzip patch linux-headers || true
 
 #RUN rm -rf /data/rtk/RTKLIB
