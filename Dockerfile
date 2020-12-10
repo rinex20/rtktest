@@ -24,8 +24,8 @@ RUN apk update \
 FROM alpine:latest
 
 COPY --from=builder /usr/local/bin/* /usr/local/bin/
-COPY --from=builder /data/rtk /data/
+COPY --from=builder /data/rtk/* /data/
 # run rtkrcv
 EXPOSE 8077 8078 8001-8008
-ENTRYPOINT ["rtkrcv", "-p", "8077", "-m", "8078", "-o", "/data/rtk/conf/rtkrcv.conf"] 
+ENTRYPOINT ["rtkrcv", "-p", "8077", "-m", "8078", "-o", "/data/rtkrcv.conf"] 
 #CMD /usr/local/bin/rtkrcv -p 8077 -m 8078 -o /data/rtk/rtkrcv.conf
